@@ -6,7 +6,14 @@ try:
     source.raise_for_status()
 
     soup = BeautifulSoup(source.text, 'html.parser')
-    print(soup)
+    
+    movies = soup.find('tbody', class_="lister-list").find_all('tr')
+    
+    for movie in movies:
+
+        rank = movie.find('td', class_="titleColumn").get_text(strip=True)
+
+        print(rank) 
 
 except Exception as e:
     print(e)
