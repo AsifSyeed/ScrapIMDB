@@ -11,9 +11,15 @@ try:
     
     for movie in movies:
 
-        rank = movie.find('td', class_="titleColumn").get_text(strip=True)
+        name = movie.find('td', class_="titleColumn").a.text
 
-        print(rank) 
+        rank = movie.find('td', class_="titleColumn").get_text(strip=True).split('.')[0]
+
+        year = movie.find('td', class_="titleColumn").span.text.strip('()')
+
+        rating = movie.find('td', class_="ratingColumn imdbRating").strong.text
+
+        print(rank, name, year, rating) 
 
 except Exception as e:
     print(e)
